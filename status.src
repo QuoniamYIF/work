@@ -1,0 +1,118 @@
+1
+00:00:00,220 --> 00:00:04,090
+回顾一下带关键字 new 运行任何函数
+
+2
+00:00:04,090 --> 00:00:07,710
+这个函数在运行时仿佛会有额外的代码在它里面
+
+3
+00:00:07,710 --> 00:00:10,960
+明确的 它将会设置关键字 this 等于
+
+4
+00:00:10,960 --> 00:00:13,320
+一个全新的对象
+
+5
+00:00:13,320 --> 00:00:16,970
+另外我们使用关键字 new 调用了函数 Van
+
+6
+00:00:16,970 --> 00:00:21,150
+并且构造了一个不同的对象
+
+7
+00:00:21,150 --> 00:00:24,530
+但这并不意味着这个函数的运行将会使用相同的对象作为上下文
+
+8
+00:00:24,530 --> 00:00:28,250
+存在两个不同的 object.create 语句被插入到两个不同的函数里
+
+9
+00:00:28,250 --> 00:00:32,759
+作为两次使用关键字 new 的结果
+
+10
+00:00:32,759 --> 00:00:36,440
+在图表中 这意味着不管你是不是使用关键字调用 Van
+
+11
+00:00:36,440 --> 00:00:40,450
+你都会构建这个全新的
+
+12
+00:00:40,450 --> 00:00:44,420
+委托到 Car 类上的对象
+
+13
+00:00:44,420 --> 00:00:47,390
+如果你使用关键字 new 调用 Van 函数作为开始
+
+14
+00:00:47,390 --> 00:00:50,630
+你已经有了一个新对象 你不需要第二个
+
+15
+00:00:50,630 --> 00:00:53,970
+Sometimes people try to solve this by assigning the result of the new
+
+16
+00:00:53,970 --> 00:00:58,330
+Car invocation, this object that gets created during the Car constructor,
+
+17
+00:00:58,330 --> 00:01:01,380
+assigning to the local keyword this.
+
+18
+00:01:01,380 --> 00:01:05,370
+But only is it disallowed to assign to the keyword this at all in your own code,
+
+19
+00:01:05,370 --> 00:01:08,810
+even thought the interpreter is allowed to do such things,
+
+20
+00:01:08,810 --> 00:01:12,290
+it doesn't solve the fact that you wind up having two different object,
+
+21
+00:01:12,290 --> 00:01:14,510
+one of which you would be apparently throwing away.
+
+22
+00:01:14,510 --> 00:01:16,210
+So this solution just doesn't work.
+因此这个解决办法并不奏效
+
+23
+00:01:16,210 --> 00:01:17,150
+Simple enough.
+
+24
+00:01:17,150 --> 00:01:20,100
+What if we were to call the Car function without the keyword new?
+如果我们不用关键字 new 调用 Car 函数会怎样
+
+25
+00:01:20,100 --> 00:01:23,230
+Perhaps that would have the effect of simply running the Car function in
+
+26
+00:01:23,230 --> 00:01:24,970
+the context that we wanted.
+
+27
+00:01:24,970 --> 00:01:27,140
+Unfortunately, this doesn't work either.
+不幸的是 那样也不会奏效
+
+28
+00:01:27,140 --> 00:01:30,000
+In this situation, what would you expect the keyword this from within
+
+29
+00:01:30,000 --> 00:01:34,050
+the Car function to be referring to as a result of being evoked on this line?
