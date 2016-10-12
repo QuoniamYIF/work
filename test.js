@@ -7,19 +7,22 @@ let returnV = [{
 }, {
     "f": 1
 }, {
-    "e": 1
+    "e": 2
 }, {
-    "y": 2
+    "y": 1 / 2
 }]
 
 let Reg
 
 let ex1 = expression
     .replace(/pow/g, "Math.pow")
+    // .replace(/random/g, "Math.random")
 
 var that = global;
 
 returnV.forEach(function(v, k) {
+    // console.log(k);
+    // console.log(v);
     Object.assign(that, v);
 });
 
