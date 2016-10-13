@@ -1,9 +1,9 @@
 "use strict"
 
-let expression = "pow(((c+f)+e),y)"
+let expression = "pow((pow(G10+f, 2) + pow(e, 2) + pow(G10+f, 3)),1/2)"
 
 let returnV = [{
-    "c": 1
+    "G10": 1
 }, {
     "f": 1
 }, {
@@ -12,23 +12,16 @@ let returnV = [{
     "y": 1 / 2
 }]
 
-let Reg
+// let Reg
 
 let ex1 = expression
     .replace(/pow/g, "Math.pow")
-    // .replace(/random/g, "Math.random")
 
-var that = global;
+// .replace(/random/g, "Math.random")
 
-returnV.forEach(function(v, k) {
-    // console.log(k);
-    // console.log(v);
-    Object.assign(that, v);
-});
+let that = global;
 
-
-
-// console.log(c);
+// let that = {}
 
 // for (let i = 0; i < returnV.length; i++) {
 //     let item = returnV[i]
@@ -38,7 +31,18 @@ returnV.forEach(function(v, k) {
 //     ex1 = ex1.replace(Reg, returnV[i][key])
 // }
 
-console.log(eval(ex1))
+returnV.forEach(function(v, k) {
+    // console.log(k);
+    // console.log(v);
+    Object.assign(that, v);
+});
+
+console.log(eval(ex1));
+
+
+// console.log(that);
+
+// console.log(c);
 
 // var a = 1;
 
