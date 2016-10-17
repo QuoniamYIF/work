@@ -19,46 +19,42 @@ let ex1 = expression
 
 // .replace(/random/g, "Math.random")
 
-let that = global;
+// let that = global
 
 // let that = {}
 
-// for (let i = 0; i < returnV.length; i++) {
-//     let item = returnV[i]
-//     let key = Object.keys(item)
+for (let i = 0; i < returnV.length; i++) {
+    let item = returnV[i]
+    let key = Object.keys(item)
+    Reg = new RegExp(key, 'g')
+    ex1 = ex1.replace(Reg, returnV[i][key])
+}
 
-//     Reg = new RegExp(key, 'g')
-//     ex1 = ex1.replace(Reg, returnV[i][key])
-// }
+// returnV.forEach(function(v, k) {
+//     Object.assign(that, v)
+// })
 
-returnV.forEach(function(v, k) {
-    // console.log(k);
-    // console.log(v);
-    Object.assign(that, v);
-});
+console.log(eval(ex1))
 
-console.log(eval(ex1));
+// console.log(that)
 
+// console.log(c)
 
-// console.log(that);
+// var a = 1
 
-// console.log(c);
+// var ex2 = "Math.pow(a, 2)"
 
-// var a = 1;
+// console.log(eval(ex2))
 
-// var ex2 = "Math.pow(a, 2)";
-
-// console.log(eval(ex2));
-
-// console.log(Math.pow(add(add(1, 1), 1), 2));
+// console.log(Math.pow(add(add(1, 1), 1), 2))
 
 // var ex2 = 
 
-// console.log(eval(ex2));
+// console.log(eval(ex2))
 
-// var z = "Math.add(2,3)";
+// var z = "Math.add(2,3)"
 
-// console.log(eval(z));
+// console.log(eval(z))
 
 // function add(a, b) {
 //     return (a + b)

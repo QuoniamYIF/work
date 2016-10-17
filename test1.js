@@ -29,3 +29,33 @@ var a = Array.from({ length: 5 }, () => { return 0 });
 // function isBigEnough(element, index, array) {
 //     return (element >= 10)
 // }
+
+// console.log([1, 3, 2, 3, 2].sort())
+
+// var invertTree = function(root) {
+//     if (root === null) return null;
+//     var temp = root.left;
+//     root.left = invertTree(root.right);
+//     root.right = invertTree(temp);
+//     return root;
+// };
+
+// var invertTree = function(root) {
+//     if (root === null) return;
+//     // swap left and right child
+//     var temp = root.left;
+//     root.left = root.right;
+//     root.right = temp;
+//     // recurse into children
+//     invertTree(root.left);
+//     invertTree(root.right);
+// };
+
+// var intersection = function(nums1, nums2) {
+//     // for (var i = 0, j = 0;i < nums.length;)
+
+// };
+
+var validateSearchTree = function(tree) {
+    
+}
