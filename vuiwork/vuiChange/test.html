@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title></title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+</head>
+
+<body>
+    <div id="table"></div>
+
+    <script src="./js/jquery.min.js"></script>
+    <script src="./js/vui/vui-core.js"></script>
+    <script src="./js/vui/vui-index.js"></script>
+    <script src="./js/vui/vui-menu.js"></script>
+    <script src="./js/vui/vui-popwindow.js"></script>
+    <script src="./js/vui/vui-tools.js"></script>
+    <script>
+        $("#table").vgrid({
+            url: "test.json",
+            colModel: [{
+                name: "name",
+                label: "Name"
+            }, {
+                name: "age",
+                label: "Age"
+            }],
+            caption: "TEST",
+            dataRoot: "dataR"
+        });
+    </script>
+</body>
+
+</html>
