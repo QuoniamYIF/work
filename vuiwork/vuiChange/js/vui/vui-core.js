@@ -1684,6 +1684,7 @@
                 url: settings.url,
                 data: params,
                 success: function(data) {
+                    console.log(data);
                     var totalCount = data.pagination.totalCounts;
                     if (totalCount > 0) {
                         closeNodata();
