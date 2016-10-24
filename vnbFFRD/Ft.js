@@ -23,7 +23,8 @@ var TAB = {
                     height: self.height,
                     rowNum: self.rownum,
                     loadonce: true, // this is just for the demo
-                    pager: "#" + self.TFOOT
+                    pager: "#" + self.TFOOT,
+                    caption: "基本表格"
                 });
             });
         },
