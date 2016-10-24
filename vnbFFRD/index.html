@@ -1,39 +1,67 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <!-- The jQuery library is a prerequisite for all jqSuite products -->
-    <script type="text/ecmascript" src="js/jquery.min.js"></script>
-    <!-- We support more than 40 localizations -->
-    <script type="text/ecmascript" src="js/trirand/i18n/grid.locale-en.js"></script>
-    <!-- This is the Javascript file of jqGrid -->
-    <script type="text/ecmascript" src="js/trirand/jquery.jqGrid.min.js"></script>
-    <!-- A link to a Boostrap  and jqGrid Bootstrap CSS siles-->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
     <link rel="stylesheet" type="text/css" media="screen" href="css/trirand/ui.jqgrid-bootstrap.css" />
-    <script>
-        $.jgrid.defaults.width = 780;
-        $.jgrid.defaults.responsive = true;
-        $.jgrid.defaults.styleUI = 'Bootstrap';
-    </script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
-
     <meta charset="utf-8" />
-    <title>jqGrid Loading Data - JSON</title>
+    <title>Ft Table</title>
 </head>
 
 <body>
-  <!-- 下面的标签需要自己写 剩下的集成到框架 -->
-  <div id="app">
-    <vnbtab
-      api-url="url"
-      istreetable="true"
-      isPaginate="false"
-    ></vnbtab>
-  </div>
+    <!-- 实现标签具体内容 -->
+    <section id="app">
+        <!--基本表格-->
+        <h1>基本表格</h1>
+        <vnbtab TNAME="quoniammm" TFOOT="yif" tabletype='basicT' url='http://ofht327si.bkt.clouddn.com/basicT.json' datatype='json' width='780' height='250' rownum='10' colmodel="[
+            { label: 'Category Name', name: 'CategoryName', width: 75 },
+            { label: 'Product Name', name: 'ProductName', width: 90 },
+            { label: 'Country', name: 'Country', width: 100 },
+            { label: 'Price', name: 'Price', width: 80, sorttype: 'integer' },
+            { label: 'Quantity', name: 'Quantity', width: 80, sorttype: 'number' }]">
+        </vnbtab>
+        <!--层级表格-->
+        <h1>层级表格</h1>
+        <vnbtab TNAME="quoniammm1" TFOOT="yif1" tabletype='hierarchyT' subdatatype='json' surl='http://ofht327si.bkt.clouddn.com/' url='http://ofht327si.bkt.clouddn.com/hierarchyT.json' datatype='json' width='780' height='250' rownum='10' colmodel="[
+                    { label: 'ID', name: 'CustomerID', key: true, width: 75 },
+                    { label: 'Company Name', name: 'CompanyName', width: 150 },
+                    { label: 'Contact Name', name: 'ContactName', width: 150 },
+                    { label: 'Phone', name: 'Phone', width: 150 },
+                    { label: 'City', name: 'City', width: 150 }]" submodel="[{
+                    name: ['OrderID', 'RequiredDate', 'ShipName', 'ShipCity', 'Freight'],
+                    width: [60, 180, 150, 100, 70],
+                    align: ['left', 'left', 'left', 'left', 'right'],
+                    params: false
+                }]">
+        </vnbtab>
+        <!--树形表格-->
+        <h1>树形表格</h1>
+        <vnbtab TNAME="quoniammm2" TFOOT="yif2" tabletype='treeT' url='http://ofht327si.bkt.clouddn.com/tree.json' datatype='json' width='780' height='250' rownum='10' colmodel="[
+                        { label: 'OrderID', name: 'OrderID', key: true, width: 75 },
+                        { label: 'Customer ID', name: 'CustomerID', width: 150 },
+                        { label: 'Order Date', name: 'OrderDate', width: 150 },
+                        { label: 'Freight', name: 'Freight', width: 150 },
+                        { label: 'Ship Name', name: 'ShipName', width: 150 }
+                    ]">
+        </vnbtab>
+    </section>
 
-  <script src="../node_modules/vue/dist/vue.min.js" charset="utf-8"></script>
-  <script src="./vue-table.js"></script>
-  <script>
-  </script>
+    <!--需要引入的js文件-->
+    <script type="text/ecmascript" src="js/jquery.min.js"></script>
+    <script type="text/ecmascript" src="js/trirand/i18n/grid.locale-cn.js"></script>
+    <script type="text/ecmascript" src="js/trirand/jquery.jqGrid.min.js"></script>
+    <script src="js/init.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
+    <script src="../node_modules/vue/dist/vue.min.js" charset="utf-8"></script>
+    <script src="./Ft.js"></script>
+
+    <!--实现自定义表格标签-->
+    <script>
+        Vue.component('vnbtab', VnbTab);
+        new Vue({
+            el: '#app'
+        });
+    </script>
 </body>
+
 </html>

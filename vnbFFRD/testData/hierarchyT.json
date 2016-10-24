@@ -1,0 +1,8 @@
+{
+    "rows": [
+        { "CustomerID": "ALFKI", "CompanyName": "Alfreds Futterkiste", "ContactName": "Maria Anders", "Phone": "030-0074321", "City": "Berlin" },
+        { "CustomerID": "ANATR", "CompanyName": "Ana Trujillo Emparedados y helados", "ContactName": "Ana Trujillo", "Phone": "(5) 555-4729", "City": "M\u00e9xico D.F." },
+        { "CustomerID": "ANTON", "CompanyName": "Antonio Moreno Taquer\u00eda", "ContactName": "Antonio Moreno", "Phone": "(5) 555-3932", "City": "M\u00e9xico D.F." },
+        { "CustomerID": "BLAUS", "CompanyName": "Blauer See Delikatessen", "ContactName": "Hanna Moos", "Phone": "0621-08460", "City": "Mannheim" }
+    ]
+}
