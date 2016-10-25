@@ -12,15 +12,16 @@
     <!-- 实现标签具体内容 -->
     <section id="app">
         <h1>基本表格</h1>
-        <vnbtab TNAME="quoniammm" TFOOT="yif" tabletype='basicT' url='http://ofht327si.bkt.clouddn.com/basicT.json' datatype='json' width='780' height='250' rownum='10' colmodel="[
-            { label: 'Category Name', name: 'CategoryName', width: 75 },
-            { label: 'Product Name', name: 'ProductName', width: 90 },
-            { label: 'Country', name: 'Country', width: 100 },
-            { label: 'Price', name: 'Price', width: 80, sorttype: 'integer' },
-            { label: 'Quantity', name: 'Quantity', width: 80, sorttype: 'number' }]">
-        </vnbtab>
+        <!-- <vnbtab TNAME="quoniammm" TFOOT="yif" shrinktofit='false' tabletype='basicT' url='http://ofht327si.bkt.clouddn.com/edittest.json' datatype='json' width='780' height='250' rownum='10' colmodel="[
+            { label: '序列号', name: 'OrderID', width: 75, editable: true },
+            { label: '日期', name: 'OrderDate', width: 90, editable: true },
+            { label: '国家', name: 'CustomerID', width: 100 },
+            { label: '船名', name: 'ShipName', width: 80, sorttype: 'integer' },
+            { label: '数字', name: 'Freight', width: 80, sorttype: 'number' }]">
+        </vnbtab> -->
+        <button id="sendButton">send</button>
         <h1>层级表格</h1>
-        <vnbtab TNAME="quoniammm1" TFOOT="yif1" tabletype='hierarchyT' subdatatype='json' surl='http://ofht327si.bkt.clouddn.com/' url='http://ofht327si.bkt.clouddn.com/hierarchyT.json' datatype='json' width='780' height='250' rownum='10' colmodel="[
+        <!-- <vnbtab TNAME="quoniammm1" TFOOT="yif1" tabletype='hierarchyT' subdatatype='json' surl='http://ofht327si.bkt.clouddn.com/' url='http://ofht327si.bkt.clouddn.com/hierarchyT.json' datatype='json' width='780' height='250' rownum='10' colmodel="[
                     { label: 'ID', name: 'CustomerID', key: true, width: 75 },
                     { label: 'Company Name', name: 'CompanyName', width: 150 },
                     { label: 'Contact Name', name: 'ContactName', width: 150 },
@@ -31,24 +32,32 @@
                     align: ['left', 'left', 'left', 'left', 'right'],
                     params: false
                 }]">
-        </vnbtab>
+        </vnbtab> -->
         <h1>树形表格</h1>
-        <vnbtab TNAME="quoniammm2" TFOOT="yif2" tabletype='treeT' url='http://ofht327si.bkt.clouddn.com/tree.json' datatype='json' width='780' height='250' rownum='10' colmodel="[
+        <!-- <vnbtab TNAME="quoniammm2" TFOOT="yif2" tabletype='treeT' url='http://ofht327si.bkt.clouddn.com/tree.json' datatype='json' width='780' height='250' rownum='10' colmodel="[
                         { label: 'OrderID', name: 'OrderID', key: true, width: 75 },
                         { label: 'Customer ID', name: 'CustomerID', width: 150 },
                         { label: 'Order Date', name: 'OrderDate', width: 150 },
                         { label: 'Freight', name: 'Freight', width: 150 },
                         { label: 'Ship Name', name: 'ShipName', width: 150 }
                     ]">
-        </vnbtab>
+        </vnbtab> -->
     </section>
-    <div style="margin-left:20px">
-        <table id="jqGrid"></table>
-        <div id="jqGridPager"></div>
+    <div style="margin-left:20px;">
+        <table id="jqGrid1"></table>
+        <div id="Pager1"></div>
+        <br>
+        <div> Try to drag rows from and to Grid1 and Grid2</div>
+        <br>
+        <table id="jqGrid2"></table>
+        <div id="Pager2"></div>
+        <table id="jqGrid3"></table>
+        <div id="Pager3"></div>
     </div>
 
     <!--需要引入的js文件-->
     <script type="text/ecmascript" src="js/jquery.min.js"></script>
+    <script type="text/ecmascript" src="js/jquery-ui.min.js"></script>
     <script type="text/ecmascript" src="js/trirand/i18n/grid.locale-cn.js"></script>
     <script type="text/ecmascript" src="js/trirand/jquery.jqGrid.min.js"></script>
     <script src="js/init.js"></script>
@@ -66,162 +75,118 @@
 
     <script>
         $(document).ready(function() {
-            var filter;
-            $("#jqGrid").jqGrid({
-                url: 'http://ofht327si.bkt.clouddn.com/column_menu.json',
-                mtype: "GET",
-                datatype: "json",
-                colModel: [{
-                    label: "Order ID",
-                    //sorttype: 'integer',
-                    name: 'OrderID',
-                    key: true,
-                    width: 75,
-                    colmenu: true,
-                    coloptions: {
-                        sorting: true,
-                        columns: true,
-                        filtering: true,
-                        seraching: true,
-                        grouping: false,
-                        freeze: true
-                    },
-                    searchoptions: {
-                        searchOperMenu: false,
-                        sopt: ['eq', 'gt', 'lt', 'ge', 'le']
-                    }
+            var datagrid1 = [{
+                    id1: "11",
+                    name1: "test1",
+                    values1: 'One'
                 }, {
-                    label: "Customer ID",
-                    name: 'CustomerID',
-                    width: 150,
-                    hidedlg: true,
-                    // stype defines the search type control - in this case HTML select (dropdownlist)
-                    stype: "select",
-                    // searchoptions value - name values pairs for the dropdown - they will appear as options
-                    searchoptions: {
-                        value: " :[All];ALFKI:ALFKI;ANATR:ANATR;ANTON:ANTON;AROUT:AROUT;BERGS:BERGS;BLAUS:BLAUS;BLONP:BLONP;BOLID:BOLID;BONAP:BONAP;BOTTM:BOTTM;BSBEV:BSBEV;CACTU:CACTU;CENTC:CENTC;CHOPS:CHOPS;COMMI:COMMI;CONSH:CONSH;DRACD:DRACD;DUMON:DUMON;EASTC:EASTC;ERNSH:ERNSH;FAMIA:FAMIA;FOLIG:FOLIG;FOLKO:FOLKO;FRANK:FRANK;FRANR:FRANR;FRANS:FRANS;FURIB:FURIB;GALED:GALED;GODOS:GODOS;GOURL:GOURL;GREAL:GREAL;GROSR:GROSR;HANAR:HANAR;HILAA:HILAA;HUNGC:HUNGC;HUNGO:HUNGO;ISLAT:ISLAT;KOENE:KOENE;LACOR:LACOR;LAMAI:LAMAI;LAUGB:LAUGB;LAZYK:LAZYK;LEHMS:LEHMS;LETSS:LETSS;LILAS:LILAS;LINOD:LINOD;LONEP:LONEP;MAGAA:MAGAA;MAISD:MAISD;MEREP:MEREP;MORGK:MORGK;NORTS:NORTS;OCEAN:OCEAN;OLDWO:OLDWO;OTTIK:OTTIK;PERIC:PERIC;PICCO:PICCO;PRINI:PRINI;QUEDE:QUEDE;QUEEN:QUEEN;QUICK:QUICK;RANCH:RANCH;RATTC:RATTC;REGGC:REGGC;RICAR:RICAR;RICSU:RICSU;ROMEY:ROMEY;SANTG:SANTG;SAVEA:SAVEA;SEVES:SEVES;SIMOB:SIMOB;SPECD:SPECD;SPLIR:SPLIR;SUPRD:SUPRD;THEBI:THEBI;THECR:THECR;TOMSP:TOMSP;TORTU:TORTU;TRADH:TRADH;TRAIH:TRAIH;VAFFE:VAFFE;VICTE:VICTE;VINET:VINET;WANDK:WANDK;WARTH:WARTH;WELLI:WELLI;WHITC:WHITC;WILMK:WILMK;WOLZA:WOLZA"
-                    }
+                    id1: "12",
+                    name1: "test2",
+                    values1: 'Two'
                 }, {
-                    label: "Order Date",
-                    name: 'OrderDate',
-                    width: 150,
-                    sorttype: 'date',
-                    formatter: 'date',
-                    srcformat: 'Y-m-d',
-                    stype: 'text',
-                    newformat: 'n/j/Y',
-                    searchoptions: {
-                        // dataInit is the client-side event that fires upon initializing the toolbar search field for a column
-                        // use it to place a third party control to customize the toolbar
-                        dataInit: function(element) {
-                            $(element).datepicker({
-                                id: 'orderDate_datePicker',
-                                dateFormat: 'm/d/yy',
-                                //minDate: new Date(2010, 0, 1),
-                                maxDate: new Date(2020, 0, 1),
-                                showOn: 'focus'
-                            });
-                        }
-
-                    }
+                    id1: "13",
+                    name1: "test3",
+                    values1: 'Three'
+                }],
+                datagrid2 = [{
+                    id2: "21",
+                    name2: "test21",
+                    values2: 'One1'
                 }, {
-                    label: "Ship Name",
-                    name: 'ShipName',
-                    width: 150,
-                    searchoptions: {
-                        // dataInit is the client-side event that fires upon initializing the toolbar search field for a column
-                        // use it to place a third party control to customize the toolbar
-
-                        dataInit: function(element) {
-                            $(element).autocomplete({
-                                id: 'AutoComplete',
-                                source: function(request, response) {
-                                    this.xhr = $.ajax({
-                                        url: 'http://trirand.com/blog/phpjqgrid/examples/jsonp/autocompletep.php?callback=?&acelem=ShipName',
-                                        data: request,
-                                        dataType: "jsonp",
-                                        success: function(data) {
-                                            response(data);
-                                        },
-                                        error: function(model, response, options) {
-                                            response([]);
-                                        }
-                                    });
-                                },
-                                autoFocus: true
-                            });
-                        },
-
-                        sopt: ['cn']
-                    }
+                    id2: "22",
+                    name2: "test22",
+                    values2: 'Two1'
                 }, {
-                    label: "Freight",
-                    sorttype: 'number',
-                    name: 'Freight',
-                    width: 150,
-                    sopt: ['eq']
-                }, ],
-                loadonce: true,
-                viewrecords: true,
+                    id2: "23",
+                    name2: "test23",
+                    values2: 'Three1'
+                }];
+            jQuery("#jqGrid1").jqGrid({
+                datatype: "local",
+                data: datagrid1,
                 width: 780,
-                height: 250,
-                rowNum: 10,
-                colMenu: true,
-                shrinkToFit: true,
-                pager: "#jqGridPager"
-            });
-            // activate the toolbar searching
-
-            $('#jqGrid').jqGrid('filterToolbar', {
-                stringResult: true,
-                //searchOnEnter: false,
-                searchOperators: true
-            });
-
-            $('#jqGrid').jqGrid('navGrid', "#jqGridPager", {
-                search: false, // show search button on the toolbar
-                add: false,
-                edit: false,
-                del: false,
-                refresh: true
-            });
-
-            $("#save").click(function() {
-                filter = $("#jqGrid").jqGrid('getGridParam', 'postData').filters;
-                var perm = [1, 0, 2, 4, 3];
-                $("#jqGrid").jqGrid('remapColumns', perm, true, false);
-                console.log($("#jqGrid").jqGrid('getGridParam', 'colModel'));
+                height: 100,
+                colModel: [{
+                    label: 'Id 1',
+                    name: 'id1',
+                    index: 'id',
+                    width: 100,
+                    key: true
+                }, {
+                    label: 'Name 1',
+                    name: 'name1',
+                    index: 'name',
+                    width: 100
+                }, {
+                    label: 'Values 1',
+                    name: 'values1',
+                    index: 'values',
+                    width: 200
+                }],
+                caption: 'Grid 1',
+                pager: '#Pager1'
             });
 
-            $("#load").click(function() {
-                console.log(filter);
-                $("#jqGrid").jqGrid('refreshFilterToolbar', {
-                    filters: filter,
-                    onClearVal: function(elem, name) {
-                        if (name === 'CustomerID') {
-                            console.log(elem);
-                            elem.multiselect('refresh');
-                        }
-                    },
-                    onSetVal: function(elem, name) {
-                        if (name === 'CustomerID') {
-                            console.log(elem);
-                            elem.multiselect('refresh');
-                        }
-                    }
-                });
+            jQuery("#jqGrid2").jqGrid({
+                datatype: "local",
+                data: datagrid2,
+                width: 780,
+                height: 100,
+                colModel: [{
+                    label: 'ID 2',
+                    name: 'id2',
+                    index: 'id',
+                    width: 100,
+                    key: true
+                }, {
+                    label: 'Name 2',
+                    name: 'name2',
+                    index: 'name',
+                    width: 100
+                }, {
+                    label: 'Values 2',
+                    name: 'values2',
+                    index: 'values',
+                    width: 200
+                }],
+                caption: 'Grid 2',
+                pager: '#Pager2'
             });
-            
-            var timer;
-            $("#search_cells").on("keyup", function() {
-                var self = this;
-                if (timer) {
-                    clearTimeout(timer);
-                }
-                timer = setTimeout(function() {
-                    //timer = null;
-                    $("#jqGrid").jqGrid('filterInput', self.value);
-                }, 0);
+
+            jQuery("#jqGrid3").jqGrid({
+                datatype: "local",
+                data: datagrid2,
+                width: 780,
+                height: 100,
+                colModel: [{
+                    label: 'ID 2',
+                    name: 'id2',
+                    index: 'id',
+                    width: 100,
+                    key: true
+                }, {
+                    label: 'Name 2',
+                    name: 'name2',
+                    index: 'name',
+                    width: 100
+                }, {
+                    label: 'Values 2',
+                    name: 'values2',
+                    index: 'values',
+                    width: 200
+                }],
+                caption: 'Grid 3',
+                pager: '#Pager3'
+            });
+
+            jQuery("#jqGrid1").jqGrid('gridDnD', {
+                connectWith: '#jqGrid2'
+            });
+            jQuery("#jqGrid2").jqGrid('gridDnD', {
+                connectWith: '#jqGrid1'
+            });
+            jQuery("#jqGrid3").jqGrid('gridDnD', {
+                connectWith: '#jqGrid1'
             });
         });
     </script>
