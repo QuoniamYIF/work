@@ -2,263 +2,239 @@
 <html lang="en">
 
 <head>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
-    <link rel="stylesheet" type="text/css" media="screen" href="css/trirand/ui.jqgrid-bootstrap.css" />
-    <link rel="stylesheet" type="text/css" media="screen" href="css/bootstrap-datetimepicker.css" />
     <meta charset="utf-8" />
     <title>Ft Table</title>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link href="http://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" media="screen" href="css/trirand/ui.jqgrid-bootstrap.css" />
+    <link rel="stylesheet" type="text/css" media="screen" href="css/bootstrap-datetimepicker.css" />
+    <link href="http://cdn.bootcss.com/materialize/0.97.7/css/materialize.min.css" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" media="screen" href="css/style.css" />
 </head>
 
 <body>
-    <!-- 实现标签具体内容
-    <section id="app">
-        <h1>基本表格</h1>
-     <vnbtab TNAME="quoniammm" TFOOT="yif" shrinktofit='false' tabletype='basicT' url='http://ofht327si.bkt.clouddn.com/edittest.json' datatype='json' width='780' height='250' rownum='10' colmodel="[
-            { label: '序列号', name: 'OrderID', width: 75, editable: true },
-            { label: '日期', name: 'OrderDate', width: 90, editable: true },
-            { label: '国家', name: 'CustomerID', width: 100 },
-            { label: '船名', name: 'ShipName', width: 80, sorttype: 'integer' },
-            { label: '数字', name: 'Freight', width: 80, sorttype: 'number' }]">
-        </vnbtab>
-    <button id="sendButton">send</button>
-    <h1>层级表格</h1>
-    <vnbtab TNAME="quoniammm1" TFOOT="yif1" tabletype='hierarchyT' subdatatype='json' surl='http://ofht327si.bkt.clouddn.com/' url='http://ofht327si.bkt.clouddn.com/hierarchyT.json' datatype='json' width='780' height='250' rownum='10' colmodel="[
-                    { label: 'ID', name: 'CustomerID', key: true, width: 75 },
-                    { label: 'Company Name', name: 'CompanyName', width: 150 },
-                    { label: 'Contact Name', name: 'ContactName', width: 150 },
-                    { label: 'Phone', name: 'Phone', width: 150 },
-                    { label: 'City', name: 'City', width: 150 }]" submodel="[{
-                    name: ['OrderID', 'RequiredDate', 'ShipName', 'ShipCity', 'Freight'],
-                    width: [60, 180, 150, 100, 70],
-                    align: ['left', 'left', 'left', 'left', 'right'],
-                    params: false
-                }]">
-        </vnbtab>
-    <h1>树形表格</h1>
-    <vnbtab TNAME="quoniammm2" TFOOT="yif2" tabletype='treeT' url='http://ofht327si.bkt.clouddn.com/tree.json' datatype='json' width='780' height='250' rownum='10' colmodel="[
-                        { label: 'OrderID', name: 'OrderID', key: true, width: 75 },
-                        { label: 'Customer ID', name: 'CustomerID', width: 150 },
-                        { label: 'Order Date', name: 'OrderDate', width: 150 },
-                        { label: 'Freight', name: 'Freight', width: 150 },
-                        { label: 'Ship Name', name: 'ShipName', width: 150 }
-                    ]">
-        </vnbtab>
-    </section>-->
-    <h1>事件及事件配置</h1>
-    <div style="margin-left:20px">
-        <table id="jqGrid"></table>
-        <div id="jqGridPager"></div>
+
+    <div id="modal1" class="modal">
+        <div class="modal-header">
+            <a class="btn-floating waves-effect waves-light red pull-right modal-close tooltipped" href="#modal1" data-position="left" data-delay="50" data-tooltip="退出事件配置"><i class="material-icons">power_settings_new</i></a>
+            <h4 class="modal-title">事件配置</h4>
+        </div>
+        <div class="modal-body">
+            <div class="row" id="thingSettings">
+                <div id="one" class="">
+                    <div class="row">
+                        <div class="input-field col s12">
+                            <input id="password" type="password" class="validate">
+                            <label for="password">事件编号</label>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="input-field col s12">
+                            <input id="email" type="email" class="validate">
+                            <label for="email">事件名稱</label>
+                        </div>
+                    </div>
+                    <div class="input-field col s12">
+                        <select>
+                            <option value="" disabled selected>選擇相應的事件類型</option>
+                            <option value="1">00-登陆</option>
+                            <option value="2">01-注册</option>
+                            <option value="3">02-激活</option>
+                        </select>
+                        <label>事件類型</label>
+                    </div>
+                </div>
+                <div id="two" class="hide">
+                    <div class="input-field col s12">
+                        <select multiple>
+                            <option value="" disabled selected>選擇你想要的維度</option>
+                            <option value="1">維度 1</option>
+                            <option value="2">維度 2</option>
+                            <option value="3">維度 3</option>
+                        </select>
+                        <label>事件聚合維度</label>
+                        <a class="btn-floating waves-effect waves-light red pull-right modal-close tooltipped" href="#modal1" style="margin-right: 10px;" data-position="left" data-delay="50" data-tooltip="添加維度"><i class="material-icons">add</i></a>
+                    </div>
+                </div>
+                <div id="three" class="hide">
+                    three
+                </div>
+            </div>
+
+        </div>
+        <div class="modal-footer">
+            <a id="finish" class="btn-floating waves-effect waves-light green pull-right modal-trigger tooltipped" href="#modal1" style="margin-right: 10px;" data-position="bottom" data-delay="50" data-tooltip="配置完成"><i class="material-icons">done</i></a>
+            <a id="next" class="btn-floating waves-effect waves-light green pull-right modal-trigger tooltipped" href="#modal1" style="margin-right: 10px;" data-position="bottom" data-delay="50" data-tooltip="配置下一條"><i class="material-icons">skip_next</i></a>
+            <a id="previous" class="btn-floating waves-effect waves-light green pull-right modal-trigger tooltipped hide" href="#modal1" style="margin-right: 10px;" data-position="left" data-delay="50" data-tooltip="配置上一條"><i class="material-icons">skip_previous</i></a>
+        </div>
     </div>
 
+    <header>
+        <div class="container">
+            <div class="page-header">
+                <h3>Demo <small>事件</small></h3>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <div class="container" id="flex">
+            <div style="display:inline-block" class="one">
+                <table id="jqGrid"></table>
+                <div id="jqGridPager"></div>
+            </div>
+
+            <div id="panelT" class="panel  panel-success hoverable two">
+                <div class="panel-heading"><span style="font-weight: bolder">事件配置: &nbsp;ID</span>
+                    <a class="btn-floating waves-effect waves-light red pull-right modal-trigger" href="#modal1"><i class="material-icons">settings</i></a>
+                </div>
+                <div class="panel-body">
+                    <p>配置事件的詳細信息</p>
+                    <ul class="collapsible popout" data-collapsible="accordion">
+                        <li>
+                            <div class="collapsible-header"><i class="material-icons">subtitles</i>事件名稱</div>
+                            <div class="collapsible-body">
+                                <p>Lorem ipsum dolor sit amet.</p>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="collapsible-header"><i class="material-icons">class</i>事件類型</div>
+                            <div class="collapsible-body">
+                                <p>Lorem ipsum dolor sit amet.</p>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="collapsible-header"><i class="material-icons">loyalty</i>事件編號</div>
+                            <div class="collapsible-body">
+                                <p>Lorem ipsum dolor sit amet.</p>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="collapsible-header"><i class="material-icons">language</i>事件聚合維度</div>
+                            <div class="collapsible-body">
+                                <p>Lorem ipsum dolor sit amet.</p>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="collapsible-header"><i class="material-icons">class</i>事件類型</div>
+                            <div class="collapsible-body">
+                                <p>Lorem ipsum dolor sit amet.</p>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="collapsible-header"><i class="material-icons">loyalty</i>事件編號</div>
+                            <div class="collapsible-body">
+                                <p>Lorem ipsum dolor sit amet.</p>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+                <table class="table">
+                </table>
+            </div>
+        </div>
+
+    </main>
+
+    <footer></footer>
     <!--需要引入的js文件-->
     <script type="text/ecmascript" src="js/jquery.min.js"></script>
     <script type="text/ecmascript" src="js/jquery-ui.min.js"></script>
     <script type="text/ecmascript" src="js/trirand/i18n/grid.locale-cn.js"></script>
     <script type="text/ecmascript" src="js/trirand/jquery.jqGrid.min.js"></script>
     <script src="js/init.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
-    <script type="text/ecmascript" src="js/bootstrap-datetimepicker.js"></script>
-    <script src="../node_modules/vue/dist/vue.min.js" charset="utf-8"></script>
-    <script src="./Ft.js"></script>
+    <script src="http://cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script src="http://cdn.bootcss.com/materialize/0.97.7/js/materialize.min.js"></script>
 
     <!--实现自定义表格标签-->
-    <!-- <script>
-            $(document).ready(function() {
-                var template = "<div style='margin-left:15px;'><div> ID <sup>*</sup>:</div><div> {CustomerID} </div>";
-                template += "<div> 内容: </div><div>{CompanyName} </div>";
-                template += "<div> 事件ID: </div><div>{Company} </div><br>";
-                template += "<hr><div><h3>事件配置: </h3></div><hr>";
-                template += "<div> City1:</div><div>{City1}</div>";
-                template += "<div> City2:</div><div>{City2}</div>";
-
-                $("#jqGrid").jqGrid({
-                    url: 'http://ofht327si.bkt.clouddn.com/test.json',
-                    // we set the changes to be made at client side using predefined word clientArray
-                    editurl: 'clientArray',
-                    datatype: "json",
-                    colModel: [{
-                        label: '内容ID',
-                        name: 'CustomerID',
-                        width: 200,
-                        key: true,
-                        editable: true,
-                        editrules: {
-                            required: true
-                        }
-                    }, {
-                        label: '内容',
-                        name: 'CompanyName',
-                        width: 200,
-                        editable: true // must set editable to true if you want to make the field editable
-                    }, {
-                        label: '事件ID',
-                        name: 'Company',
-                        width: 200,
-                        editable: true // must set editable to true if you want to make the field editable
-                    }],
-                    sortname: 'CustomerID',
-                    sortorder: 'asc',
-                    loadonce: true,
-                    viewrecords: true,
-                    width: 780,
-                    height: 200,
-                    rowNum: 10,
-                    pager: "#jqGridPager"
-                });
-
-                $('#jqGrid').navGrid('#jqGridPager',
-                    // the buttons to appear on the toolbar of the grid
-                    {
-                        edit: true,
-                        add: true,
-                        del: true,
-                        position: "left",
-                    },
-                    // options for the Edit Dialog
-                    {
-                        template: template,
-                        errorTextFormat: function(data) {
-                            return 'Error: ' + data.responseText
-                        }
-                    },
-                    // options for the Add Dialog
-                    {
-                        template: template,
-                        errorTextFormat: function(data) {
-                            return 'Error: ' + data.responseText
-                        }
-                    },
-                    // options for the Delete Dailog
-                    {
-                        errorTextFormat: function(data) {
-                            return 'Error: ' + data.responseText
-                        }
-                    });
-            });
-    </script> -->
-
     <script>
         $(document).ready(function() {
+            var ind = 0;
+            var temArray = $("#thingSettings").children().toArray();
+
+            $('.modal-trigger').leanModal();
+
+            $('select').material_select();
+
+            $("#next").click(function() {
+                temArray.map(function(v, k, array) {
+
+                    if (k == ind && k <= array.length - 1) {
+                        $(array[ind]).addClass("hide");
+                        $(array[ind + 1]).removeClass("hide");
+                    }
+                });
+
+                ind++;
+
+                if (ind != 0) {
+                    $("#previous").removeClass("hide");
+                } else {
+                    $("#previous").addClass("hide");
+                }
+            });
+
+            $("#previous").click(function() {
+                temArray.map(function(v, k, array) {
+
+                    if (k == ind && k > 0) {
+                        $(array[ind]).addClass("hide");
+                        $(array[ind - 1]).removeClass("hide");
+                    }
+
+
+                });
+                ind--;
+
+                if (ind > 0) {
+                    $("#previous").removeClass("hide");
+                } else {
+                    $("#previous").addClass("hide");
+                }
+            });
+
+            $("#finish").click(function() {});
+
+
+
             $("#jqGrid").jqGrid({
-                url: 'http://ofht327si.bkt.clouddn.com/test1.json',
+                url: 'http://ofht327si.bkt.clouddn.com/test.json',
+                // we set the changes to be made at client side using predefined word clientArray
                 editurl: 'clientArray',
                 datatype: "json",
                 colModel: [{
-                    label: 'Order Date',
-                    name: 'OrderDate',
-                    width: 150,
-                    editable: true,
-                    edittype: "text",
-                    editoptions: {
-                        // dataInit is the client-side event that fires upon initializing the toolbar search field for a column
-                        // use it to place a third party control to customize the toolbar
-                        dataInit: function(element) {
-                            $(element).datepicker({
-                                autoclose: true,
-                                format: 'yyyy-mm-dd',
-                                orientation: 'bottom'
-                            });
-                        }
-                    }
-                }, {
-                    label: 'Customer ID',
+                    label: '内容ID',
                     name: 'CustomerID',
-                    width: 150,
-                    editable: true,
-                    edittype: "select",
-                    editoptions: {
-                        value: "ALFKI:ALFKI;ANATR:ANATR;ANTON:ANTON;AROUT:AROUT;BERGS:BERGS;BLAUS:BLAUS;BLONP:BLONP;BOLID:BOLID;BONAP:BONAP;BOTTM:BOTTM;BSBEV:BSBEV;CACTU:CACTU;CENTC:CENTC;CHOPS:CHOPS;COMMI:COMMI;CONSH:CONSH;DRACD:DRACD;DUMON:DUMON;EASTC:EASTC;ERNSH:ERNSH;FAMIA:FAMIA;FISSA:FISSA;FOLIG:FOLIG;FOLKO:FOLKO;FRANK:FRANK;FRANR:FRANR;FRANS:FRANS;FURIB:FURIB;GALED:GALED;GODOS:GODOS;GOURL:GOURL;GREAL:GREAL;GROSR:GROSR;HANAR:HANAR;HILAA:HILAA;HUNGC:HUNGC;HUNGO:HUNGO;ISLAT:ISLAT;KOENE:KOENE;LACOR:LACOR;LAMAI:LAMAI;LAUGB:LAUGB;LAZYK:LAZYK;LEHMS:LEHMS;LETSS:LETSS;LILAS:LILAS;LINOD:LINOD;LONEP:LONEP;MAGAA:MAGAA;MAISD:MAISD;MEREP:MEREP;MORGK:MORGK;NORTS:NORTS;OCEAN:OCEAN;OLDWO:OLDWO;OTTIK:OTTIK;PARIS:PARIS;PERIC:PERIC;PICCO:PICCO;PRINI:PRINI;QUEDE:QUEDE;QUEEN:QUEEN;QUICK:QUICK;RANCH:RANCH;RATTC:RATTC;REGGC:REGGC;RICAR:RICAR;RICSU:RICSU;ROMEY:ROMEY;SANTG:SANTG;SAVEA:SAVEA;SEVES:SEVES;SIMOB:SIMOB;SPECD:SPECD;SPLIR:SPLIR;SUPRD:SUPRD;THEBI:THEBI;THECR:THECR;TOMSP:TOMSP;TORTU:TORTU;TRADH:TRADH;TRAIH:TRAIH;VAFFE:VAFFE;VICTE:VICTE;VINET:VINET;WANDK:WANDK;WARTH:WARTH;WELLI:WELLI;WHITC:WHITC;WILMK:WILMK;WOLZA:WOLZA"
-                    }
+                    width: 200,
+                    editable: true
                 }, {
-                    label: 'Freigh',
-                    name: 'Freight',
-                    width: 150,
-                    editable: true,
-                    edittype: "custom",
-                    editoptions: {
-                        custom_value: getFreightElementValue,
-                        custom_element: createFreightEditElement
-                    }
+                    label: '内容',
+                    name: 'CompanyName',
+                    width: 200,
+                    editable: true
+                }, {
+                    label: '事件ID',
+                    name: 'Company',
+                    width: 200,
+                    editable: true
                 }],
+                width: 530,
+                height: 300,
+                sortname: 'CustomerID',
+                sortorder: 'asc',
                 loadonce: true,
-                viewrecords: true,
-                height: 250,
-                rowNum: 10,
-                pager: "#jqGridPager"
+                rowNum: 20,
+                scrollPopUp: true,
+                pager: "#jqGridPager",
             });
 
-            $("#jqGrid").navGrid("#jqGridPager", {
+            $('#jqGrid').navGrid('#jqGridPager', {
                 edit: true,
-                add: false,
-                del: false,
-                search: false,
-                refresh: true,
-                view: false,
-                align: "left"
-            }, {
-                closeAfterEdit: true,
-                focusField: 1
+                add: true,
+                del: true,
+                refresh: false,
+                position: "left",
             });
-
-            function createFreightEditElement(value, editOptions) {
-
-                var div = $("<div style='margin-bottom:5px;margin-top:-10px;'></div>");
-                var label = $("<label class='radio-inline'></label>");
-                var radio = $("<input>", {
-                    type: "radio",
-                    value: "0",
-                    name: "freight",
-                    id: "zero",
-                    checked: (value != 25 && value != 50 && value != 100)
-                });
-                label.append(radio).append("0");
-                var label1 = $("<label class='radio-inline'></label>");
-                var radio1 = $("<input>", {
-                    type: "radio",
-                    value: "25",
-                    name: "freight",
-                    id: "twentyfive",
-                    checked: value == 25
-                });
-                label1.append(radio1).append("25");
-                var label2 = $("<label class='radio-inline'></label>");
-                var radio2 = $("<input>", {
-                    type: "radio",
-                    value: "50",
-                    name: "freight",
-                    id: "fifty",
-                    checked: value == 50
-                });
-                label2.append(radio2).append("50");
-                var label3 = $("<label class='radio-inline'></label>");
-                var radio3 = $("<input>", {
-                    type: "radio",
-                    value: "100",
-                    name: "freight",
-                    id: "hundred",
-                    checked: value == 100
-                });
-                label3.append(radio3).append("100");
-                div.append(label).append(label1).append(label2).append(label3);
-
-                return div;
-            }
-
-            // The javascript executed specified by JQGridColumn.EditTypeCustomGetValue when EditType = EditType.Custom
-            // One parameter passed - the custom element created in JQGridColumn.EditTypeCustomCreateElement
-            function getFreightElementValue(elem, oper, value) {
-                if (oper === "set") {
-                    var radioButton = $(elem).find("input:radio[value='" + value + "']");
-                    if (radioButton.length > 0) {
-                        radioButton.prop("checked", true);
-                    }
-                }
-
-                if (oper === "get") {
-                    return $(elem).find("input:radio:checked").val();
-                }
-            }
-
         });
     </script>
 

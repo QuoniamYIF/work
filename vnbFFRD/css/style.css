@@ -1,0 +1,28 @@
+#flex {
+    display: flex;
+}
+
+.one {
+    order: 1;
+}
+
+.two {
+    margin-left: 50px;
+    width: 50%;
+    order: 2;
+}
+
+.panel-success {
+    border-color: #CCC;
+}
+
+.panel-success>.panel-heading {
+    color: #555;
+    background-color: #CCC;
+    border-color: #CCC;
+}
+
+.caret {
+    border-right: 0px solid transparent;
+    border-left: 0px solid transparent;
+}
